@@ -79,7 +79,11 @@ if (isset($_GET["request"])) {
 
             break;
         case 'delete':
-
+            $id = $_POST["id"];
+            
+            $sql = "DELETE FROM `clients` WHERE id = ?";
+            $stmt= $conn->prepare($sql);
+            echo $stmt->execute([$id]) ? 1 : 0;
             break;
     }
 }
