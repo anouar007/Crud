@@ -23,18 +23,15 @@ include "init.php";
         </div>
     </div>
     <div class="row pt-2" style="box-shadow: 1px 1px 3px 0px #c3c3c3;">
-        <table class="table w-100 table-dark table-striped table-hover clientsTable">
+        <table class="table w-100 table-dark table-striped table-hover " id="clientsTable">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Client Name</th>
                     <th>Client Email</th>
-                    <th>Actions</th>
+                    
                 </tr>
             </thead>
-            <tbody>
-
-            </tbody>
         </table>
     </div>
 </div>
@@ -44,18 +41,16 @@ include "init.php";
 <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
 <script>
     $(document).ready(function(){
-        $(".clientsTable").DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: 'clientsController.php',
-                type: 'POST',
-                data: {request: "get"},
+        $("#clientsTable").DataTable({
+            'processing': true,
+            'serverSide': true,
+            'ajax': {
+                'url': 'clientsController.php?request=get',
             },
-            columns: [
-                { data: "id" },
-                { data: "name" },
-                { data: "email" }
+            'columns': [
+                { data: 'id' },
+                { data: 'name' },
+                { data: 'email' }
             ]
         });
     });
