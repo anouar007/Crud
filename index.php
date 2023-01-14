@@ -128,6 +128,11 @@ include "init.php";
                             $("#newClientModal").modal('hide');
                             $('#clientsTable').DataTable();
                             table.ajax.reload();
+                            Swal.fire(
+                                'Added!',
+                                'Client has been added.',
+                                'success'
+                            )
                         }
                     }
                 });
@@ -155,13 +160,13 @@ include "init.php";
                             },
                             success: (data) => {
                                 if (data) {
-                                    Swal.fire(
-                                        'Deleted!',
-                                        'Your file has been deleted.',
-                                        'success'
-                                    )
                                     $('#clientsTable').DataTable();
                                     table.ajax.reload();
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'Client has been deleted.',
+                                        'success'
+                                    )
                                 }
                             }
                         });
