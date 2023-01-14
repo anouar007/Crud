@@ -65,7 +65,12 @@ if (isset($_GET["request"])) {
             echo json_encode($response);
             break;
         case 'add':
-
+            $name = $_POST["name"];
+            $email = $_POST["email"];
+            
+            $sql = "INSERT INTO `clients`(`name`, `email`) VALUES (?, ?)";
+            $stmt= $conn->prepare($sql);
+            echo $stmt->execute([$name, $email]) ? 1 : 0;
             break;
         case 'update':
 
