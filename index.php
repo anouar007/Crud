@@ -29,6 +29,7 @@ include "init.php";
                     <th>ID</th>
                     <th>Client Name</th>
                     <th>Client Email</th>
+                    <th>Client City</th>
                     
                 </tr>
             </thead>
@@ -48,13 +49,15 @@ include "init.php";
                     <form>
                         <div class="mb-3">
                             <label for="name" class="form-label">Client Name</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="nameHelp">
-                            <div id="nameHelp" class="form-text"></div>
+                            <input type="text" class="form-control" id="name">
                         </div>
                         <div class="mb-3">
-                            <label for="email1" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text"></div>
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="city" class="form-label">city</label>
+                            <input type="city" class="form-control" id="city">
                         </div>
                     </form>
                 </div>
@@ -80,18 +83,20 @@ include "init.php";
             'columns': [
                 { data: 'id' },
                 { data: 'name' },
-                { data: 'email' }
+                { data: 'email' },
+                { data: 'city' }
             ]
         });
 
         $("#addClient").on("click", function () {
             let name = $("#name").val();
             let email = $("#email").val();
+            let city = $("#city").val();
 
             $.ajax({
                 url: 'clientsController.php?request=add',
                 type: "post",
-                data: {name: name, email: email},
+                data: {name, email, city},
                 success: (data) =>{
                     if(data) {
                         $("#newClientModal").modal('hide');

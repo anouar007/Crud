@@ -17,10 +17,11 @@ if (isset($_GET["request"])) {
 
             $searchQuery = " ";
             if ($searchValue != '') {
-                $searchQuery = " AND (email LIKE :email OR name LIKE :name) ";
+                $searchQuery = " AND (email LIKE :email OR name LIKE :name OR city LIKE :city) ";
                 $searchArray = array(
                     'email' => "%$searchValue%",
                     'name' => "%$searchValue%",
+                    'city' => "%$searchValue%",
                 );
             }
 
@@ -52,6 +53,7 @@ if (isset($_GET["request"])) {
                     "id" => $row['id'],
                     "email" => $row['email'],
                     "name" => $row['name'],
+                    "city" => $row['city'],
                 );
             }
 
@@ -67,10 +69,11 @@ if (isset($_GET["request"])) {
         case 'add':
             $name = $_POST["name"];
             $email = $_POST["email"];
+            $city = $_POST["city"];
             
-            $sql = "INSERT INTO `clients`(`name`, `email`) VALUES (?, ?)";
+            $sql = "INSERT INTO `clients`(`name`, `email`, `city`) VALUES (?, ?, ?)";
             $stmt= $conn->prepare($sql);
-            echo $stmt->execute([$name, $email]) ? 1 : 0;
+            echo $stmt->execute([$name, $email, $city]) ? 1 : 0;
             break;
         case 'update':
 
