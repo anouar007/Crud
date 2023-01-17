@@ -4,7 +4,6 @@ include "init.php";
 if (isset($_GET["request"])) {
     switch ($_GET["request"]) {
         case 'get':
-
             $draw = $_GET['draw'];
             $row = $_GET['start'];
             $rowperpage = $_GET['length'];
@@ -12,22 +11,22 @@ if (isset($_GET["request"])) {
             $columnName = $_GET['columns'][$columnIndex]['data'];
             $columnSortOrder = $_GET['order'][0]['dir'];
             $searchQuery = '';
-
-            if (isset($_GET['id'])) {
-                $name = $_GET['id'];
-                $searchQuery = " AND id = $id ";
-            }
-            if (isset($_GET['name'])) {
+            
+            if (isset($_GET['id']) && $_GET['id'] != -1) {
+                $id = $_GET['id'];
+                $searchQuery += " AND id = " . $id . " ";
+            }var_dump($searchQuery);
+            if (isset($_GET['name']) && $_GET['name'] != '') {
                 $name = $_GET['name'];
-                $searchQuery = " AND name LIKE '%$name%' ";
+                $searchQuery += " AND name LIKE '%" . $name . "%' ";
             }
-            if (isset($_GET['email'])) {
-                $name = $_GET['email'];
-                $searchQuery = " AND email LIKE '%$email%' ";
+            if (isset($_GET['email']) && $_GET['email'] != '') {
+                $email = $_GET['email'];
+                $searchQuery += " AND email LIKE '%" . $email . "%' ";
             }
-            if (isset($_GET['city'])) {
-                $name = $_GET['city'];
-                $searchQuery = " AND city LIKE '%$city%' ";
+            if (isset($_GET['city']) && $_GET['city'] != '') {
+                $city = $_GET['city'];
+                $searchQuery += " AND city LIKE '%" . $city . "%' ";
             }
 
             $stmt = $conn->prepare("SELECT COUNT(*) AS allcount FROM clients ");

@@ -37,16 +37,16 @@ include "init.php";
                 <h5>Filters</h5>
             </div>
             <div class="col col-6 mt-1 mb-1">
-                ID: <input type="number" class="form-control filter" name="id" id="clientIdF">
+                ID: <input type="number" class="form-control filter" name="id" id="clientIdF" value="-1">
             </div>
             <div class="col col-6 mt-1 mb-1">
-                Name: <input type="text" class="form-control filter" name="name" id="clientNameF">
+                Name: <input type="text" class="form-control filter" name="name" id="clientNameF" value="">
             </div>
             <div class="col col-6 mt-1 mb-1">
-                Email: <input type="text" class="form-control filter" name="email" id="clientEmailF">
+                Email: <input type="text" class="form-control filter" name="email" id="clientEmailF" value="">
             </div>
             <div class="col col-6 mt-1 mb-1">
-                City: <input type="text" class="form-control filter" name="city" id="clientCityF">
+                City: <input type="text" class="form-control filter" name="city" id="clientCityF" value="">
             </div>
         </div>
         <div class="row pt-2 pb-2 box">
