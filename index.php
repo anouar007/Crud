@@ -37,7 +37,7 @@ include "init.php";
                 <h5>Filters</h5>
             </div>
             <div class="col col-6 mt-1 mb-1">
-                ID: <input type="number" class="form-control filter" name="id" id="clientIdF" value="-1">
+                ID: <input type="number" class="form-control filter" name="id" id="clientIdF" value="">
             </div>
             <div class="col col-6 mt-1 mb-1">
                 Name: <input type="text" class="form-control filter" name="name" id="clientNameF" value="">
