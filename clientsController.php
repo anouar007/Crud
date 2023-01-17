@@ -11,18 +11,23 @@ if (isset($_GET["request"])) {
             $columnIndex = $_GET['order'][0]['column'];
             $columnName = $_GET['columns'][$columnIndex]['data'];
             $columnSortOrder = $_GET['order'][0]['dir'];
-            $searchValue = $_GET['search']['value'];
+            $searchQuery = '';
 
-            $searchArray = array();
-
-            $searchQuery = " ";
-            if ($searchValue != '') {
-                $searchQuery = " AND (email LIKE :email OR name LIKE :name OR city LIKE :city) ";
-                $searchArray = array(
-                    'email' => "%$searchValue%",
-                    'name' => "%$searchValue%",
-                    'city' => "%$searchValue%",
-                );
+            if (isset($_GET['id'])) {
+                $name = $_GET['id'];
+                $searchQuery = " AND id = $id ";
+            }
+            if (isset($_GET['name'])) {
+                $name = $_GET['name'];
+                $searchQuery = " AND name LIKE '%$name%' ";
+            }
+            if (isset($_GET['email'])) {
+                $name = $_GET['email'];
+                $searchQuery = " AND email LIKE '%$email%' ";
+            }
+            if (isset($_GET['city'])) {
+                $name = $_GET['city'];
+                $searchQuery = " AND city LIKE '%$city%' ";
             }
 
             $stmt = $conn->prepare("SELECT COUNT(*) AS allcount FROM clients ");
@@ -76,7 +81,14 @@ if (isset($_GET["request"])) {
             echo $stmt->execute([$name, $email, $city]) ? 1 : 0;
             break;
         case 'update':
-
+            $name = $_POST["name"];
+            $email = $_POST["email"];
+            $city = $_POST["city"];
+            $id = $_POST["clientId"];
+            
+            $sql = "UPDATE `clients` SET `name` = '$name', `email` = '$email', `city` = '$city' WHERE `clients`.`id` = $id;";
+            $stmt= $conn->prepare($sql);
+            echo $stmt->execute() ? 1 : 0;
             break;
         case 'delete':
             $id = $_POST["id"];
